@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قاعدة بيانات قنوات الأنمي العربية</title>
+    <meta name="description" content="دليلك الشامل لقنوات الأنمي العربية على يوتيوب - قاعدة بيانات تفاعلية">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Floating Particles Background -->
+    <canvas id="particlesCanvas"></canvas>
+
+    <!-- Hero Banner -->
+    <header class="hero-banner">
+        <img src="banner.png" alt="Anime Channels Banner" class="hero-banner__img" id="heroBannerImg">
+        <div class="hero-banner__overlay">
+            <h1 class="hero-banner__title">قنوات الأنمي العربية</h1>
+            <p class="hero-banner__subtitle">دليلك الشامل لقنوات الأنمي العربية على يوتيوب</p>
+            <div class="hero-banner__count" id="totalCount">جاري التحميل...</div>
+        </div>
+    </header>
+
+    <!-- Controls -->
+    <section class="controls-section">
+        <div class="container">
+            <div class="filter-bar">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">الكل</button>
+                    <button class="filter-btn" data-filter="مستمرة">
+                        <span class="filter-dot dot--active"></span>المستمرة
+                    </button>
+                    <button class="filter-btn" data-filter="متوقفة">
+                        <span class="filter-dot dot--stopped"></span>متوقفة
+                    </button>
+                    <button class="filter-btn" data-filter="محذوفة">
+                        <span class="filter-dot dot--deleted"></span>محذوفة
+                    </button>
+                </div>
+                <div class="search-sort">
+                    <div class="search-box">
+                        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <input type="text" id="searchInput" placeholder="ابحث عن قناة...">
+                    </div>
+                    <select id="sortSelect">
+                        <option value="date-asc">الأقدم أولاً</option>
+                        <option value="date-desc">الأحدث أولاً</option>
+                        <option value="name-asc">الاسم (أ-ي)</option>
+                        <option value="name-desc">الاسم (ي-أ)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="results-info" id="resultsInfo"></div>
+        </div>
+    </section>
+
+    <!-- Channels Grid -->
+    <section class="channels-section">
+        <div class="container">
+            <div class="channels-grid" id="channelsGrid">
+                <!-- Channels will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="statistics-section reveal" id="statsSection">
+        <div class="container">
+            <h2 class="section-title">إحصائيات</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-number" id="statTotal" data-target="0">0</div>
+                    <div class="stat-label">إجمالي القنوات</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-number" id="statActive" data-target="0">0</div>
+                    <div class="stat-label">مستمرة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏸️</div>
+                    <div class="stat-number" id="statStopped" data-target="0">0</div>
+                    <div class="stat-label">متوقفة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🗑️</div>
+                    <div class="stat-number" id="statDeleted" data-target="0">0</div>
+                    <div class="stat-label">محذوفة</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="resources-section reveal" id="resourcesSection">
+        <div class="container">
+            <h2 class="section-title">مصادر إضافية</h2>
+            <div class="resources-grid" id="resourcesGrid"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>قاعدة بيانات قنوات الأنمي العربية &copy; 2026</p>
+        </div>
+    </footer>
+
+    <!-- Channel Detail Modal -->
+    <div class="modal-backdrop" id="modalBackdrop">
+        <div class="modal" id="channelModal">
+            <button class="modal__close" id="modalClose">&times;</button>
+            <div class="modal__avatar" id="modalAvatar"></div>
+            <h2 class="modal__name" id="modalName"></h2>
+            <div class="modal__status" id="modalStatus"></div>
+            <div class="modal__info">
+                <div class="modal__info-row" id="modalYearRow">
+                    <span class="modal__info-label">الفترة</span>
+                    <span class="modal__info-value" id="modalYear"></span>
+                </div>
+                <div class="modal__info-row" id="modalNotesRow">
+                    <span class="modal__info-label">ملاحظات</span>
+                    <span class="modal__info-value" id="modalNotes"></span>
+                </div>
+            </div>
+            <a href="#" target="_blank" class="modal__link" id="modalLink">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                    <path
+                        d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+                زيارة القناة
+            </a>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
