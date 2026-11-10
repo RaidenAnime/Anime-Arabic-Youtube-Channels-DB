@@ -6,7 +6,7 @@ const channelsData = [
   { name: "Billelarts", year_start: 2026, url: "https://www.youtube.com/@Billelarts", status: "مستمرة", image: "images/Billelarts.jpg" },
   { name: "Koe", year_start: 2023, url: "https://www.youtube.com/@Koe_i", status: "مستمرة", notes: "Man effect", image: "images/Ozeka.jpg" },
   { name: "القيصر", year_start: 2024, url: "https://www.youtube.com/@ddpo-7", status: "مستمرة", notes: "الفاروق Effect", image: "images/القيصر.jpg" },
-  { name: "Shinify", year_start: 2019, url: "https://www.youtube.com/@shinify0", status: "مستمرة", notes: "الفاروق Effect", image: "images/Shinify.jpg" },
+  { name: "Shinify", year_start: 2019, url: "https://www.youtube.com/@shinify0", status: "مستمرة", notes: "الفاروق Effect", image: "images/shinify.jpg" },
   { name: "الموقر", year_start: 2025, url: "https://www.youtube.com/@HonorableAR", status: "مستمرة", notes: "الفاروق Effect", image: "images/الموقر.jpg" },
   { name: "ODACCHI", year_start: 2019, url: "https://www.youtube.com/@ODACCHII", status: "مستمرة", image: "images/ODACCHI.jpg" },
   { name: "Trafi", year_start: 2018, url: "https://www.youtube.com/@trafi0", status: "مستمرة", image: "images/Trafi.jpg" },
